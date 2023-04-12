@@ -1,0 +1,100 @@
+examples  : 345 , 22 accept_all
+Run Synthesizer click : star(<num>) :: ([0-9]*)
+
+
+examples : +2(accept) ,222(accept) , +123(accept) , 
++ IN 2 IS LITERAL 
+general : 222
+include : optional num star concat
+exclude endwith contain startwith any or 
+concat(concat(optional(<+>),<num>),star(<num>))
+(((\+?)[0-9])([0-9]*))
+
+
+examples : +a , bcs // accept all
+include : optional  star concat
+exclude endwith contain startwith any
+(((\+?)[a-zA-Z])([a-z]*))
+concat(concat(optional(<+>),<let>),star(<low>))
+
+
+examples : Abc(accept) , Bcd(accept), abc (reject)
+include : concat , star
+exclude endwith contain startwith any optional
+([A-Z]([a-z]*))
+concat(<cap>,star(<low>))
+
+
+example 5:
+example result literals generals
+2       acc    2
+4       acc    4
+6       acc    6
+8       acc    8
+include:
+exclude:
+===>
+(((2|4)|6)|8)
+
+
+example 6:
+example result literals generals
+1+2     acc    +
+2+3     acc
+1+5     acc
+include : num
+exclude : endwith contain startwith any
+===>
+concat(concat(<num>,<+>),<num>)
+(([0-9]\+)[0-9])
+
+
+example 7:
+example result literals generals
+1+2     acc
+2+3     acc
+include: num
+exclude: startwith contain endwith any or
+===>
+concat(concat(star(<num>),<+>),star(<num>))
+((([0-9]*)\+)([0-9]*))
+
+
+example 8:
+example result literals generals
+as-234  acc    -
+b-2     acc
+include: num let star
+exclude: startwith contain endwith any or
+===>
+concat(concat(star(<let>),<->),star(<num>))
+((([a-zA-Z]*)\-)([0-9]*))
+
+
+example 9:
+example result literals generals
++abc    acc
+231435c acc
+include:
+exclude:
+===>
+endwith(<c>)
+(.*c)
+
+
+example 10:
+example result literals generals
+0.0     acc    .
+1.0     acc
+2.4     acc
+a       rej
+.       rej
+include: concat star
+exclude: contain startwith or endwith any
+===>
+concat(concat(<num>,optional(<.>)),star(<num>))
+(([0-9](\.?))([0-9]*))
+
+מספרים עשרוניים בין 0 ל 10 
+
+
