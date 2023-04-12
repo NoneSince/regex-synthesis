@@ -1,0 +1,184 @@
+body {
+    font-size: 19px;
+}
+
+button#set_literal {
+    color: #ffbf00;
+    background-color: white;
+    font-size: 19px;
+    border: 1px solid black;
+    padding: 15px 50px;
+    cursor: pointer
+}
+button#set_literal:hover {
+    color: white;
+    background-color: #ffbf00;
+}
+button#set_general {
+    color: white;
+    background-color: cornflowerblue;
+    font-size: 19px;
+    border: 1px solid black;
+    padding: 15px 50px;
+    cursor: pointer
+}
+button#set_general:hover {
+    color: cornflowerblue;
+    background-color: white;
+}
+
+.tg {
+    color: black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.tg td {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+.tg th {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+.tg .tg-gray_background {
+    background-color: gainsboro;
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top
+}
+.tg .tg-amber_forground {
+    color: #ffbf00;
+}
+.tg .tg-blue_background {
+    background-color: cornflowerblue;
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top
+}
+.tg .tg-white_background {
+    background-color: white;
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top
+}
+.tg .exampleCell{
+    background-color: white;
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top;
+}
+input[type=submit] {
+    color: white;
+    background-color: teal;
+    font-size: 19px;
+    border: 1px solid teal;
+    padding: 15px 50px;
+    cursor: pointer
+}
+input[type=submit]:hover {
+    color: teal;
+    background-color: white;
+}
+
+button#set_include {
+    color: limegreen;
+    background-color: white;
+    font-size: 19px;
+    border: 1px solid black;
+    padding: 15px 50px;
+    cursor: pointer
+}
+button#set_include:hover {
+    color: white;
+    background-color: limegreen;
+}
+button#set_exclude {
+    color: tomato;
+    background-color: white;
+    font-size: 19px;
+    border: 1px solid black;
+    padding: 15px 50px;
+    cursor: pointer
+}
+button#set_exclude:hover {
+    color: white;
+    background-color: tomato;
+}
+
+button.show_examples {
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px 2px;
+    cursor: pointer
+}
+button.show_examples:hover {
+    color: blueviolet;
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px 2px;
+    cursor: pointer
+}
+button.show_corner_cases {
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px 2px;
+    cursor: pointer
+}
+button.show_corner_cases:hover {
+    color: blueviolet;
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px 2px;
+    cursor: pointer
+}
+
+/* li#resultCell {
+    color:
+    font-size: 19px;
+    border: 1px solid black;
+    padding: 15px 50px;
+    cursor: pointer
+} */
+
+li.includeCell {
+    color: limegreen;
+}
+
+li.excludeCell {
+    color: tomato;
+}
+
+.no-select {
+    user-select: none;
+    /* pointer-events: none; */
+}
+.keep-space {
+    white-space: pre;
+}
+
+button.copy_regex {
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px 2px;
+    cursor: pointer
+}
+button.copy_regex:hover {
+    color: blueviolet;
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px 2px;
+    cursor: pointer
+}

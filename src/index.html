@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- insert on cursor when called/when done-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Regex Synthesizer web view</title>
+
+	<div id="CSSnJS"></div>
+</head>
+
+<body>
+	<button type="button" name="set_iteral" id="set_literal" onclick="markLiteral()">Literal</button>
+	<button type="button" name="set_general" id="set_general" onclick="markGeneral_tx()">General</button>
+	<br/>
+	<!-- <button type="button" name="unset" id="unset" onclick='colorize("ForeColor", false, "#000000");colorize("hilitecolor", false, "#ffffff");
+			document.getElementById("selected").value = document.getElementById("selected").value + "\n" + getSelectionText();'>nothing;reset to black and white</button> -->
+
+	<table class="tg">
+		<thead>
+			<tr>
+				<th class="tg-gray_background" rowspan="2"></th>
+				<th class="tg-gray_background" rowspan="2">Example</th>
+				<th class="tg-gray_background" rowspan="2">ACC/REJ</th>
+				<th class="tg-gray_background tg-amber_forground" rowspan="2">Literal</th>
+				<th class="tg-blue_background" colspan="6">General</th>
+			</tr>
+			<tr>
+				<!-- <th class="tg-gray_background" colspan="3"></th> -->
+				<th class="tg-blue_background">num</th>
+				<th class="tg-blue_background">num1-9</th>
+				<th class="tg-blue_background">let</th>
+				<th class="tg-blue_background">low</th>
+				<th class="tg-blue_background">cap</th>
+				<th class="tg-blue_background">any</th>
+			</tr>
+		</thead>
+		<tbody id="examples"></tbody>
+	</table>
+
+	<br/>
+
+    <input type="button" onclick="submitExample()" value="set example">
+	<!-- <script>addRow();</script> -->
+
+	<br/>
+
+    <input type="submit" name="run" value="Run Synthesizer" onclick="run()">
+    <div id="progrssBarPlaceholder"></div>
+
+	<br/>
+
+    <div id="resultsListPlaceholder" class="keep-space"></div>
+
+    <div id="examplesTablePlaceholder" class="keep-space"></div>
+
+    <div id="cornerCasesTablePlaceholder" class="keep-space"></div>
+
+	<script>
+		function includeCSSnJS(styleUri,scriptUri,cspSource) {
+			// <link rel="stylesheet" href="${styleUri}" />
+			link = document.createElement("link");
+			link.setAttribute("rel","stylesheet");
+			link.setAttribute("href",styleUri);
+			document.getElementById('CSSnJS').append(link);
+
+			// <script nonce="nonce" type="text/javascript" src="${scriptUri}"><s/cript>
+			script = document.createElement("script");
+			script.setAttribute("nonce","nonce");
+			script.setAttribute("type","text/javascript");
+			script.setAttribute("src",scriptUri);
+			document.getElementById('CSSnJS').append(script);
+		}
+
+		window.addEventListener("message", event => {
+			const message = event.data;
+			switch (message.command) {
+				case "setCSSnJS":
+					includeCSSnJS(message.text.styleUri,message.text.scriptUri,message.text.cspSource);
+					break;
+				case "setGeneral":
+					markGeneral_rx(message.text);
+					break;
+				case "cancelGeneral":
+					gen_text = undefined;
+					break;
+				case "showInput":
+					vscode.postMessage({command: "getInput",text: buildInput()});
+					break;
+				case "grantedMoreTime":
+					showProgrssBar();
+					break;
+				case "showResult":
+					showResult(message.text);
+					break;
+				case "doneResult":
+					removeProgrssBar();
+					break;
+				case "showExamples":
+					showExamples_rx(JSON.parse(message.text));
+					break;
+				case "showCornerCases":
+					showCornerCases_rx(JSON.parse(message.text));
+					break;
+				default:
+					vscode.postMessage({command: "info",text: "webView recieved- default: "+message.command});
+					break;
+			}
+		});
+
+		vscode = acquireVsCodeApi();
+		vscode.postMessage({command: "getCSSnJS",text: ""});
+	</script>
+</body>
+</html>
