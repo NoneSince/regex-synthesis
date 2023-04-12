@@ -1,0 +1,18 @@
+we worked hard. the work schedule cycled through the following:
+understanding the code's current state -> thinking of a continuation -> writing relevant code.
+this includes debugging as well as development.
+since we worked sequentially and left no gaps, we didn't need to store our expeirements for further investigations,
+but every small code segemet was tested by printing or vscode debugger/devtools.
+unfortunatily, we didnt refine any written code after prooving it works, so there is a room for improvement in code clearance.
+complixity wise, there is a room for improvement since we looked for a working code, not the best working code,
+so we valued visibility over tricks.
+
+we worked first on generating regex strings in python.
+then we copied the code to cpp.
+then we started matching regexes, not only looking for a specific string.
+afterwards we hard-coded strings and vectors, like examples and literals, to test "gvien this info, what do we do?".
+then we hard-coded a json-like string and collected that info.
+then we switched to getting that json as a message from a client.
+now in vscode we developed an html page that collected a json of information and sent it to vscode extension api, which sent it to our server and recieved the results.
+
+we didn't have any seperate test. all the testing was done by printing a fully detailed log (to stdout) of the codes behavior. from that we kept the input and tokens.
